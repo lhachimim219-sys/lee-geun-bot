@@ -8,13 +8,15 @@ import fs from 'fs';
 import path from 'path';
 import { fileURLToPath, pathToFileURL } from 'url';
 
+// معالجة التفكيك لتدعم جميع إصدارات Baileys (سواء كانت تحتوي على default أو لا)
+const baileysObj = baileys.default || baileys;
 const {
-    default: makeWASocket,
+    makeWASocket,
     useMultiFileAuthState,
     fetchLatestBaileysVersion,
     DisconnectReason,
     downloadContentFromMessage
-} = baileys;
+} = baileysObj;
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
 const SESSION_DIR = path.join(__dirname, 'session');
@@ -86,7 +88,7 @@ async function startBot() {
     const { state, saveCreds } = await useMultiFileAuthState(SESSION_DIR);
     const { version } = await fetchLatestBaileysVersion();
 
-    const conn = makeWASocket({
+    const conn = (makeWASocket.default || makeWASocket)({
         version,
         auth: state,
         logger: pino({ level: 'silent' }),
