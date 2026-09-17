@@ -8,7 +8,7 @@ import fs from 'fs';
 import path from 'path';
 import { fileURLToPath, pathToFileURL } from 'url';
 
-// معالجة التفكيك لتدعم جميع إصدارات Baileys (سواء كانت تحتوي على default أو لا)
+// تفكيك الكائن بشكل آمن لتفادي خطأ TypeError
 const baileysObj = baileys.default || baileys;
 const {
     makeWASocket,
@@ -88,7 +88,8 @@ async function startBot() {
     const { state, saveCreds } = await useMultiFileAuthState(SESSION_DIR);
     const { version } = await fetchLatestBaileysVersion();
 
-    const conn = (makeWASocket.default || makeWASocket)({
+    const createSocket = makeWASocket.default || makeWASocket;
+    const conn = createSocket({
         version,
         auth: state,
         logger: pino({ level: 'silent' }),
