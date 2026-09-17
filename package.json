@@ -1,0 +1,21 @@
+{
+  "name": "whatsapp-bot",
+  "version": "1.0.0",
+  "description": "بوت واتساب مبني على Baileys - جاهز للاستضافة على Render / Railway",
+  "type": "module",
+  "main": "index.js",
+  "scripts": {
+    "start": "node index.js"
+  },
+  "engines": {
+    "node": ">=18.0.0"
+  },
+  "dependencies": {
+    "@whiskeysockets/baileys": "^6.7.9",
+    "axios": "^1.7.7",
+    "cheerio": "^1.0.0",
+    "jszip": "^3.10.1",
+    "qrcode-terminal": "^0.12.0",
+    "pino": "^9.4.0"
+  }
+}

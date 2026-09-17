@@ -1,0 +1,22 @@
+# Dependencies
+node_modules/
+
+# جلسة الواتساب (تحتوي مفاتيح تسجيل الدخول - سرية جداً)
+session/
+*.session
+
+# ملفات بيئة التشغيل
+.env
+
+# لوقات
+*.log
+logs/
+
+# ملفات النظام
+.DS_Store
+Thumbs.db
+
+# ملفات مؤقتة
+tmp/
+temp/
+*.tmp
